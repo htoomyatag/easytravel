@@ -1,0 +1,55 @@
+ <div class="panel-body">
+
+      <%= form_for(@airfare) do |f| %>
+        <% if @airfare.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@airfare.errors.count, "error") %> prohibited this airfare from being saved:</h2>
+
+            <ul>
+              <% @airfare.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="form-group">
+          <%= f.label :name %><br>
+          <%= f.text_field :name,  :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :price %><br>
+          <%= f.text_field :price,  :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :rank %><br>
+          <%= f.text_field :rank,  :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :from_airport %><br>
+          <%= f.text_field :from_airport,  :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :to_airport %><br>
+          <%= f.text_field :to_airport,  :class =>"form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :airfare_type %><br>
+          <%= f.text_field :airfare_type,  :class =>"form-control" %>
+        </div>
+
+
+      </div>
+
+          <div class="panel-footer">
+                <%= f.submit :class =>"btn btn-warning" %>
+                <%= link_to 'Back', airfares_path, :class =>"btn btn-default" %>
+          </div>
+  </div>
+</div>
+
+
+<% end %>
+
+
+

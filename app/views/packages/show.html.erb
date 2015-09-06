@@ -1,0 +1,86 @@
+
+
+      <div class="top-header" id="header">
+        <div class="wrap">
+        <div class="top-header-left">
+          <ul>
+            <li><a href="#"><span> </span><%= link_to "Agent login", new_user_session_path  %></li>
+            <li><p class="contact-info">Call Us Now :+959 73245792</p></li>
+            <div class="clear"> </div>
+          </ul>
+        </div>
+        <div class="top-header-right">
+          <ul> 
+            <li><a class="face" href="#"><span> </span></a></li>
+            <li><a class="twit" href="#"><span> </span></a></li>
+            <li><a class="thum" href="#"><span> </span></a></li>
+            <li><a class="pin" href="#"><span> </span></a></li>
+            <div class="clear"> </div>
+          </ul>
+        </div>
+        <div class="clear"> </div>
+      </div>
+      </div>
+    
+  
+
+
+      <div class="clients" id="make_your_Package" style="height:800px;">
+          <div id="pk_background">
+            <h3 class="pk_name">
+              Package Name - <%= @package.destination.name %>
+            </h3>
+            <p class="pk_date">
+            <%= @package.from_date %> to <%= @package.to_date %>
+            </p>
+            <p class="pk_passenger">
+              Passenger :
+              Adult(<%= @package.no_of_adult %>) and child(<%= @package.no_of_child %>)
+            </p>
+            <hr/>
+
+            <p class="pk_airfare">
+              Airfare : <%= @package.airfare.name %>
+            </p>
+            <hr/>
+
+            <p class="pk_hotel">
+              Hotel :
+              <%= @package.hotel.name %>
+            </p>
+            <hr/>
+
+            <p class="pk_transpotation">
+              Transpotation :
+              <%= @package.local_transpotation.name %>
+            </p>
+            <hr/>
+
+
+            <p class="pk_guide">
+              Guide :
+              <%= @package.guide.name %>
+            </p>
+            <hr/>
+
+           <p class="pk_details">
+              Details :
+              <%= @package.travel_detail %>
+            </p>
+
+            <h3 class="pk_name">
+              Thanks You.
+            </h3>
+
+
+
+          </div>
+       
+
+
+               
+
+
+      </div><br/>
+
+ 

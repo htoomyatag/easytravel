@@ -1,0 +1,45 @@
+<div class="panel-body">
+<%= form_for(@guide) do |f| %>
+  <% if @guide.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@guide.errors.count, "error") %> prohibited this guide from being saved:</h2>
+
+      <ul>
+      <% @guide.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %><br>
+    <%= f.text_field :name,  :class =>"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price %><br>
+    <%= f.text_field :price,  :class =>"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :rank %><br>
+    <%= f.text_field :rank,  :class =>"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :guide_type %><br>
+    <%= f.text_field :guide_type,  :class =>"form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :contact %><br>
+    <%= f.text_field :contact,  :class =>"form-control" %>
+  </div>
+
+     </div>
+
+          <div class="panel-footer">
+                <%= f.submit :class =>"btn btn-warning" %>
+                <%= link_to 'Back', guides_path, :class =>"btn btn-default" %>
+          </div>
+  </div>
+</div>
+
+<% end %>

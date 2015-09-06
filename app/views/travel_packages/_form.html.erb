@@ -1,0 +1,157 @@
+<div class="panel-body">
+  <%= form_for @travel_package, :html => { :multipart => true } do |f| %>
+    <% if @travel_package.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@travel_package.errors.count, "error") %> prohibited this travel_package from being saved:</h2>
+
+        <ul>
+        <% @travel_package.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+  <div class="form-group">
+    <%= f.label :package_name %><br>
+    <%= f.text_field :name,  :class =>"form-control" %>
+  </div>
+
+<div class="form-group">
+    <%= f.label :price %><br>
+    <%= f.text_field :price,  :class =>"form-control" %>
+  </div>
+
+
+  <div class="well">
+    <div class="form-group">
+      <p class="text-info">Choose an Airfare [or]  
+       <button type="button" class="btn btn-default btn-xs" id="new_airfare_btn" data-toggle="modal" data-target="#airfareModal">Add New Airfare</button>
+      </p>
+      <%= f.select :airfare_id, Airfare.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+
+
+  <div class="well">
+    <div class="form-group">
+      <p class="text-info">Choose an Local Transpotation [or]  
+       <button type="button" class="btn btn-default btn-xs" id="new_transpotation_btn" data-toggle="modal" data-target="#transpotationModal">Add New Transpotation</button>
+      </p>
+       <%= f.select :local_transpotation_id, LocalTranspotation.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+
+
+
+  <div class="well">
+    <div class="form-group">
+      <p class="text-info">Choose an Guide [or]  
+       <button type="button" class="btn btn-default btn-xs" id="new_guide_btn" data-toggle="modal" data-target="#guideModal">Add New Guide</button>
+      </p>
+       <%= f.select :guide_id, Guide.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+
+
+  <div class="well">
+    <div class="form-group">
+      <p class="text-info">Choose an Hotel [or]  
+       <button type="button" class="btn btn-default btn-xs" id="new_hotel_btn" data-toggle="modal" data-target="#hotelModal">Add New Hotel</button>
+      </p>
+       <%= f.select :hotel_id, Hotel.all.collect { |c| [c.name, c.id] } %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :travel_detail %><br>
+    <%= f.text_area :travel_detail,  :class => "form-control", :rows => "3" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :avatar %><br>
+    <%= f.file_field :avatar, :class => "form-control" %>
+  </div>
+
+
+    
+  </div>
+
+          <div class="panel-footer">
+                <%= f.submit :class =>"btn btn-warning" %>
+                <%= link_to 'Back', travel_packages_path  , :class =>"btn btn-default" %>
+          </div>
+  </div>
+</div>
+
+<% end %>
+
+
+
+
+<!-- choose an air fare -->
+<div class="modal fade" id="airfareModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add new Airfare</h4>
+      </div>
+      <div class="modal-body">
+         <%= render 'airfares/new_airfare_form' %>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- choose an air fare -->
+<div class="modal fade" id="transpotationModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add New Transpotation</h4>
+      </div>
+      <div class="modal-body">
+         <%= render 'local_transpotations/new_transpotation_form' %>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- choose an guide -->
+<div class="modal fade" id="guideModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add New Guide</h4>
+      </div>
+      <div class="modal-body">
+         <%= render 'guides/new_guide_form' %>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- choose an hotel -->
+<div class="modal fade" id="hotelModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Add New Hotel</h4>
+      </div>
+      <div class="modal-body">
+         <%= render 'hotels/new_hotel_form' %>
+      </div>
+     
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

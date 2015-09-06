@@ -1,0 +1,72 @@
+<div class="container">
+  <ol class="breadcrumb">
+    <li><%= link_to "Dashboard", dashboard_path  %></li>
+    <li><%= link_to "ReadyMade Packages", travel_packages_path  %></li>
+    <li class="active">Travel Package Info</li>
+  </ol>
+
+
+
+    <% flash.each do |key, notice| %>
+      <div class="alert alert-<%= key %>">
+          <a href="#" data-dismiss="alert" class="close">×</a>
+          <%= notice %>
+      </div>
+  <% end %>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Form - Travel Package Info</div>
+      <div class="panel-body">
+      <%= image_tag @travel_package.avatar.url(:medium) %>
+      <dl class="dl-horizontal">
+        <h5>
+              <dt>Name:</dt>
+              <dd><%= @travel_package.name %></dd>
+        </h5>
+        <h5>
+              <dt>Airfare:</dt>
+              <dd><%= @travel_package.airfare.name rescue "-" %></dd>
+        </h5>
+
+        <h5>
+          <dt>Hotel:</dt>
+          <dd><%= @travel_package.hotel.name rescue "-" %></dd>
+        </h5>
+         
+        <h5>
+          <dt>Local transpotation:</dt>
+          <dd><%= @travel_package.local_transpotation.name rescue "-" %></dd>
+        </h5>
+
+        <h5>
+          <dt>Guide:</dt>
+          <dd><%= @travel_package.guide.name rescue "-" %></dd>
+        </h5>
+
+        <h5>
+          <dt>Travel detail:</dt>
+          <dd><%= @travel_package.travel_detail %></dd>
+        </h5>
+
+        <h5>
+          <dt>Price:</dt>
+          <dd><%= @travel_package.price %></dd>
+        </h5>
+
+      </dl>
+
+    </div>
+        <div class="panel-footer">
+            <%= link_to 'Edit', edit_travel_package_path(@travel_package),  :class =>"btn btn-info" %>
+      <%= link_to 'Back', travel_packages_path,  :class =>"btn btn-default" %>
+        </div>
+    </div>
+</div>
+
+
+
+
+  
+
+
+</div>

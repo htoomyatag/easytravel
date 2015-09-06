@@ -1,0 +1,86 @@
+<div ng-app="plunker">
+  <div ng-controller="MainCtrl">
+      <div class="container">
+            <ol class="breadcrumb">
+              <li><%= link_to "Dashboard", dashboard_path  %></li>
+              <li><%= link_to "ReadyMade Packages", travel_packages_path  %></li>
+            </ol>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">ReadyMade Packages</div>
+                <div class="panel-body">
+
+                  <div ng-init="travel_packages = <%= @travel_packages.to_json %>"></div>
+
+                      <form class="form-inline" role="form" >
+                          <!-- filter by price -->
+                        <div class="col-xs-2">
+                            <input  ng-model="travel_package.name" type="text" class="form-control input-lg" placeholder="By Name">
+                        </div>
+
+                       <div class="col-xs-2">
+                            <input  ng-model="travel_package.price" type="text" class="form-control input-lg" placeholder="By Price">
+                        </div>
+                      
+                        
+                        <button class="btn btn-primary btn-lg" id="help_btn" data-toggle="modal" data-target="#myModal">
+                            Help ?
+                        </button>
+
+                        <%= link_to "New Travel Package", new_travel_package_path, :id => "new_btn", :class =>"btn btn-warning btn-lg active"  %> 
+
+                      </form>
+                      <br/><br/><br/>
+                          <table class="table table-bordered">
+                              <thead>
+                                      <tr>
+                                        <th><h5><b>Name</b></h5></th>
+                                        <th><h5><b>Travel detail</b></h5></th>
+                                        <th><h5><b>Price</b></h5></th>
+                                        <th colspan="1"><h5><b>Actions</b></h5></th>
+                                      </tr>
+                              </thead>
+                              <tbody>
+                              <tbody>
+                                <tr ng-repeat="travel_package in travel_packages | filter:{name:  travel_package.name, price:  travel_package.price}"> 
+
+                                  <td>{{travel_package.name}}</td> 
+                                  <td>{{travel_package.travel_detail}}</td>
+                                  <td>{{travel_package.price}}</td>
+                                  <td> 
+                                  <a class="btn btn-primary btn-sm" href="/travel_packages/{{travel_package.id}}">Show</a>
+                                  <a class="btn btn-warning btn-sm" href="/travel_packages/{{travel_package.id}}/edit">Edit</a>
+                                  <a class="btn btn-danger btn-sm" data-confirm="Are you sure?" data-method="delete" href="/travel_packages/{{travel_package.id}}" rel="nofollow">Destroy</a></td>
+
+
+                              </tbody>
+                          </table>
+
+              </div>
+          </div>
+      </div>  
+    </div>
+</div>
+
+<br>
+
+
+
+<!-- dialog for help -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">How to article?</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,238 @@
+
+
+			<div class="top-header" id="header">
+				<div class="wrap">
+				<div class="top-header-left">
+					<ul>
+						<li><a href="#"><span> </span><%= link_to "Agent login", new_user_session_path  %></li>
+						<li><p class="contact-info">Call Us Now :+959 73245792 </p></li>
+						<div class="clear"> </div>
+					</ul>
+				</div>
+				<div class="top-header-right">
+					<ul> 
+						<li><a class="face" href="#"><span> </span></a></li>
+						<li><a class="twit" href="#"><span> </span></a></li>
+						<li><a class="thum" href="#"><span> </span></a></li>
+						<li><a class="pin" href="#"><span> </span></a></li>
+						<div class="clear"> </div>
+					</ul>
+				</div>
+				<div class="clear"> </div>
+			</div>
+			</div>
+		
+			<div class="header" >
+	
+		<!----start-images-slider---->
+		<div class="images-slider">
+			<!-- start slider -->
+		    <div id="fwslider">
+		        <div class="slider_container">
+		            <div class="slide"> 
+		                <!-- Slide image -->
+		                <%= image_tag "backend.jpg" %>
+		                <!-- /Slide image -->
+		                <!-- Texts container -->
+		                <div class="slide_content">
+		                    <div class="slide_content_wrap">
+		                        <!-- Text title -->
+		                        <h4 class="title">To travel is to live</h4>
+		                        <!-- /Text title -->
+		                        <!-- Text description -->
+		                        <p class="description">You Don't Need Magic to Disappear. All you need is a destination.</p>
+		                        <!-- /Text description -->
+		                        <div class="slide-btns description">
+		                        	<ul>
+		                        		<li id="nyp"><a class="mapbtn" href="#name_your_price">Name Your Price </a></li>
+		                        		<li id="myp"><a class="minfo" href="#make_your_Package">Make Your Package </a></li>
+		                       
+		                        	</ul>
+		                        </div>
+		                    </div>
+		                </div>
+		                 <!-- /Texts container -->
+		            </div>
+		            <!-- /Duplicate to create more slides -->
+		            <div class="slide">
+		                  <%= image_tag "backend.jpg" %>
+		                <div class="slide_content">
+		                     <div class="slide_content_wrap">
+		                        <!-- Text title -->
+		                        <h4 class="title">To travel is to live</h4>
+		                        <!-- /Text title -->
+		                        <!-- Text description -->
+		                        <p class="description">You Don't Need Magic to Disappear. All you need is a destination.</p>
+		                        <!-- /Text description -->
+		                        <div class="slide-btns description">
+		                        	<ul>
+		                        		<li><a class="mapbtn" href="#">Show on the map </a></li>
+		                        		<li><a class="minfo" href="#">More info </a></li>
+		                        		<div class="clear"> </div>
+		                        	</ul>
+		                        </div>
+		                    </div>
+		                </div>
+		            </div>
+		            <!--/slide -->
+		        </div>
+	
+		        <div class="slidePrev"><span> </span></div>
+		        <div class="slideNext"><span> </span></div>
+		    </div>
+		    <!--/slider -->
+		</div>
+		<!----start-find-place---->
+		<div class="find-place" id="name_your_price">
+			<div class="wrap">
+				<div class="p-h">
+					<span>Name Your</span>
+					<label>PRICE</label>
+				</div>
+				<!---strat-date-piker---->
+				 
+				<!---/End-date-piker---->
+				<div class="p-ww">
+				<%= form_tag search_package_path, :method => 'get' do %>
+						<span>Price</span>
+						<%= text_field_tag :price, params[:price], :class => "usd", :value =>"USD", :onfocus =>"this.value = '';", :onblur =>"if (this.value == '') {this.value = 'USD';}" %>
+						<span> Where</span>
+						<%= text_field_tag :name, params[:name], :class => "dest", :value =>"Destination", :onfocus =>"this.value = '';", :onblur =>"if (this.value == '') {this.value = 'Distination';}" %>
+
+						<%= submit_tag "Search", :name => nil %>
+
+					<% end %>
+				</div>
+				<div class="clear"> </div>
+			</div>
+		</div>
+		<!----//End-find-place---->
+		<!----start-offers---->
+		<div class="offers" id="focusDiv" >
+			<br/>
+			<%= stylesheet_link_tag  'flexslider.css' %>
+			<% @travel_packages.each do |travel_package| %>
+			<div class="wrap" id="name_your_price_wrap">
+				<div id="root">
+    				<div id="left_side">
+    					<span class="travel_img" >
+    					  <%= image_tag travel_package.avatar.url(:medium), :style =>"width:250px;height:120px;" %>
+    					</span>
+    				</div>
+    				<div id="right_side">
+    					<input type="submit" class="book" value="Book Now" data-toggle="modal" data-target="#bookModal<%= travel_package.id %>" />
+    					<h3 class="price"><%= travel_package.price rescue "-" %>USD</h3><br/>
+
+    				</div>
+
+    				<div id="center_s">
+    					<h3 class="package_name"><%= travel_package.name %> (
+	   						<span class="airfare">
+	    							<span class="airline"> 
+	    								<%= image_tag "airplane.jpg" %>
+	    							</span>
+	    						<%= travel_package.airfare.name rescue "-" %>
+	    					</span>)
+    					</h3>
+
+    					<h3>
+	    					<span class="detail"> Hotel:</span> <%= travel_package.hotel.name rescue "-" %>, 
+	    					<span class="detail"> Local Transportation:</span>  <%= travel_package.local_transpotation.name %>
+	    					<% if !travel_package.guide_id.nil? %>
+	    					<span class="guide_detail">&nbsp;Guide Provided&nbsp;</span>
+	    					<% end %>
+    					</h3>
+    					<h3 class="travel_detail">Travel Detail</h3>
+    					<p class="detail_desc"><%= travel_package.travel_detail %></p>
+    				</div>
+
+				</div>
+			</div>
+			<div style="height:5px;"> </div>
+			<% end %>
+		</div>
+		<!----//End-offers---->
+		<!---start-holiday-types---->
+			<div class="holiday-types">
+				<div class="wrap">
+					<div class="holiday-type-head">
+						<h3>Package Type</h3>
+						<span>get explore your dream to travel the world!</span>
+					</div>
+					<div class="holiday-type-grids">
+						<div class="holiday-type-grid" onclick="location.href='#';">
+							<span class="icon1"> </span>
+							<a href="#">Cruise</a>
+						</div>
+						<div class="holiday-type-grid" onclick="location.href='#';">
+							<span class="icon2"> </span>
+							<a href="#">City Breaks</a>
+						</div>
+						<div class="holiday-type-grid" onclick="location.href='#';">
+							<span class="icon3"> </span>
+							<a href="#">Honeymoon</a>
+						</div>
+						<div class="holiday-type-grid" onclick="location.href='#';">
+							<span class="icon4"> </span>
+							<a href="#">Adventure</a>
+						</div>
+						<div class="holiday-type-grid" onclick="location.href='#';">
+							<span class="icon5"> </span>
+							<a href="#">Safari</a>
+						</div>
+						<div class="holiday-type-grid" onclick="location.href='#';">
+							<span class="icon6"> </span>
+							<a href="#">Beach</a>
+						</div>
+						<div class="clear"> </div>
+					</div>
+				</div>
+				</div>
+		<!---//End-holiday-types---->
+		<!----//End-images-slider---->
+		<!----start-clients---->
+	<div class="offers" id="focusDiv">	
+		<div class="clients" id="make_your_Package" >
+			 <div class="wrap">
+			 		<h3 class="mkp">
+			 		 <span id="back_desti"><%= image_tag "back.png" %></span>
+			 		 <span id="back_date"><%= image_tag "back.png" %></span>
+			 		 <span id="back_passenger"><%= image_tag "back.png" %></span>
+			 		 <span id="back_airfare"><%= image_tag "back.png" %></span>
+			 		 <span id="back_hotel"><%= image_tag "back.png" %></span>
+			 		 <span id="back_local"><%= image_tag "back.png" %></span>
+			 		 <span id="back_guide"><%= image_tag "back.png" %></span>
+			 		 Make Your Package
+			 		</h3>
+			 		<br/><br/><br/>
+			 		<div class="mkp_form"><%= render 'form' %></div>
+			 		<br/><br/><br/><br/><br/>
+			</div>
+		</div>
+	</div>
+
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<% @travel_packages.each do |travel_package| %>
+
+	<div class="modal fade" id="bookModal<%= travel_package.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header" >
+	        <h4 class="modal-title" id="myModalLabel">
+	        	Travel Enquiry  Form for <%= travel_package.name %>
+	        	<span id="enq_price">
+	        		<%= travel_package.price rescue "-" %>USD
+	        	</span>
+	        </h4>
+	      </div>
+	      	<%= render 'readypackage_form' %>
+	     
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div><!-- /.modal -->
+
+<% end %>

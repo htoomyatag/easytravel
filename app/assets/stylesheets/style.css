@@ -1,0 +1,78 @@
+.alert-notice {
+	color: #3a87ad;
+	background-color: #d9edf7;
+	border-color: #bce8f1;
+ }
+
+
+ #help_btn{
+	float: right;
+
+ }
+
+ #new_btn{
+ 	float: right;
+ 	margin-right: 10px;
+ }
+
+ .sign_inframe{
+
+    background-color: #ffffff;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    padding: 50px;
+    -moz-border-radius: 10px; /* for firefox */
+	-webkit-border-radius: 10px; /* for safari & chrome */
+	border-radius: 10px; /* for others (opera) */
+ }
+
+ #signin_bg{
+ 	background-color: red;
+ }
+
+ .usn, .pwd {
+
+    font-weight: bold;
+    color: black;
+ }
+
+ .login_btn{
+ 	float:right;
+ }
+
+ #signin_header{
+ 	height: 100px;
+ }
+
+
+.sign_incontact{
+
+	background-color: #ffffff;
+    opacity: 0.6;
+    filter: alpha(opacity=60); /* For IE8 and earlier */
+    padding: 20px;
+    -moz-border-radius: 10px; /* for firefox */
+	-webkit-border-radius: 10px; /* for safari & chrome */
+	border-radius: 10px; /* for others (opera) */
+	margin-top: 20px;
+
+}
+
+
+.sign_in_noti{
+    color: black;
+}
+
+.sign_in_bg{
+  height : 800px;
+  overflow : auto;
+  margin-top: -20px;
+
+}
+
+
+#mynav{
+    background: #eea236;
+    border: #eea236;
+}
+

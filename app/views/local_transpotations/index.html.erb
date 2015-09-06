@@ -1,0 +1,88 @@
+<div ng-app="plunker">
+  <div ng-controller="MainCtrl">
+      <div class="container">
+            <ol class="breadcrumb">
+              <li><%= link_to "Dashboard", dashboard_path  %></li>
+              <li class="active">Local Transport</li>
+            </ol>
+
+            <div class="panel panel-default">
+              <div class="panel-heading">Listing Local Transport</div>
+                <div class="panel-body">
+
+                  <div ng-init="local_transpotations = <%= @local_transpotations.to_json %>"></div>
+
+                      <form class="form-inline" role="form" >
+                          <!-- filter by price -->
+                        <div class="col-xs-2">
+                            <input  ng-model="local_transpotation.name" type="text" class="form-control input-lg" placeholder="By Name">
+                        </div>
+                        <div class="col-xs-2">
+                            <input  ng-model="local_transpotation.price" type="text" class="form-control input-lg" placeholder="By Price">
+                        </div>
+                        
+                        <div class="col-xs-2">
+                          <input ng-model="local_transpotation.rank" type="text" class="form-control input-lg" placeholder="By Rank">
+                        </div>
+
+        
+                        <button class="btn btn-primary btn-lg" id="help_btn" data-toggle="modal" data-target="#myModal">
+                            Help ?
+                        </button>
+
+                        <%= link_to "New Local transpotation", new_local_transpotation_path, :id => "new_btn", :class =>"btn btn-warning btn-lg active"  %> 
+
+                      </form>
+                      <br/><br/><br/>
+                          <table class="table table-bordered">
+                              <thead>
+                                      <tr>
+                                        <th><h5><b>Name</b></h5></th>
+                                        <th><h5><b>Price</b></h5></th>
+                                        <th><h5><b>Rank</b></h5></th>
+                                        <th colspan="1"><h5><b>Actions</b></h5></th>
+                                      </tr>
+                              </thead>
+                              <tbody>
+                              <tbody>
+                                      <tr ng-repeat="local_transpotation in local_transpotations | filter:{name: local_transpotation.name, price: local_transpotation.price, rank: local_transpotation.rank}">              
+                                         <td>{{local_transpotation.name}}</td>
+                                         <td>{{local_transpotation.price}}</td>
+                                         <td>{{local_transpotation.rank}}</td>
+                                         <td>
+                                         <a class="btn btn-primary btn-sm" href="/local_transpotations/{{local_transpotation.id}}">Show</a>
+                                         <a class="btn btn-warning btn-sm" href="/local_transpotations/{{local_transpotation.id}}/edit">Edit</a>
+                                         <a class="btn btn-danger btn-sm" data-confirm="Are you sure?" data-method="delete" href="/local_transpotations/{{local_transpotation.id}}" rel="nofollow">Destroy</a>
+
+
+                              </tbody>
+                          </table>
+
+              </div>
+          </div>
+      </div>  
+    </div>
+</div>
+
+<br>
+
+
+
+<!-- dialog for help -->
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">How to article?</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

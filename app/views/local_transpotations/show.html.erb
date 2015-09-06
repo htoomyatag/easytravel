@@ -1,0 +1,55 @@
+
+
+<div class="container">
+	<ol class="breadcrumb">
+	  <li><%= link_to "Dashboard", dashboard_path  %></li>
+	  <li><%= link_to "Local Transpotation", local_transpotations_path  %></li>
+	  <li class="active">Local Transpotation Info</li>
+	</ol>
+
+
+
+    <% flash.each do |key, notice| %>
+	    <div class="alert alert-<%= key %>">
+	        <a href="#" data-dismiss="alert" class="close">×</a>
+	        <%= notice %>
+	    </div>
+	<% end %>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">Form - Local Transpotation Info</div>
+	    <div class="panel-body">
+			<dl class="dl-horizontal">
+			  <h5>
+			        <dt>Name:</dt>
+			        <dd><%= @local_transpotation.name %></dd>
+			  </h5>
+			  <h5>
+			        <dt>Price:</dt>
+			        <dd><%= @local_transpotation.price %></dd>
+			  </h5>
+			  <h5>
+			        <dt>Rank:</dt>
+			        <dd> <%= @local_transpotation.rank %></dd>
+			  </h5>
+			  <h5>
+			        <dt>Contact:</dt>
+			        <dd> <%= @local_transpotation.contact %></dd>
+			  </h5>
+      		</dl>
+
+		</div>
+        <div class="panel-footer">
+            <%= link_to 'Edit', edit_local_transpotation_path(@local_transpotation),  :class =>"btn btn-info" %>
+			<%= link_to 'Back', local_transpotations_path,  :class =>"btn btn-default" %>
+        </div>
+  	</div>
+</div>
+
+
+
+
+	
+
+
+</div>

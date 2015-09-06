@@ -1,0 +1,236 @@
+<div class="container">
+ 
+
+<%= form_for(@package) do |f| %>
+
+  <% if @package.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@package.errors.count, "error") %> prohibited this package from being saved:</h2>
+
+      <ul>
+      <% @package.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="desti_field"><br/>
+    <h3>Where do you want to go?</h3><br/>
+    <%= f.select :destination_id, Destination.all.collect { |c| [c.name, c.id] }  %>
+    <button type="button" id="desti_btn">Next</button>
+    <br/> 
+   
+    <% @destinations.each do |destination| %>
+
+      <div class="desti_img" id="<%= destination.name.delete(' ') %>" style="display:none;">
+          <%= image_tag destination.avatar.url(:medium), :id => "desti_pic" %>
+      </div>
+    <% end %>
+  
+  </div>
+
+  <div class="date_field" style="display:none;">
+    <h3>Stay from?</h3><br/>
+    From <%= f.date_field :from_date, :class =>"from_date_name" %>
+    To <%= f.date_field :to_date, :class =>"to_date_name" %>
+    <button type="button" id="date_btn">Next</button>
+  </div>
+
+  <div class="passenger_field" style="display:none;">
+    <h3>Number of Passenger?</h3><br/>
+    <%= f.text_field :no_of_adult, :class =>"adult_name", :placeholder =>"no of adults" %>
+    <%= f.text_field :no_of_child, :class =>"child_name", :placeholder =>"no of childs" %>
+    <button type="button" id="passenger_btn">Next</button>
+  </div>
+
+
+  <div class="airfare_field" style="display:none;">
+    <h3>Airline?</h3><br/>
+    <%= f.select :airfare_id, Airfare.all.collect { |c| [c.name, c.id] }  %>
+    <button type="button" id="airfare_btn">Next</button>
+  </div>
+
+  <div class="hotel_field">
+    <h3>Hotel?</h3><br/>
+    <%= f.select :hotel_id, Hotel.where(:id => 2).collect { |c| [c.name, c.id] }  %>
+    <button type="button" id="hotel_btn">Next</button>
+  </div>
+
+  <div class="local_transport_field" style="display:none;">
+    <h3>Local transpotation?</h3><br/>
+     <%= f.select :local_transpotation_id, LocalTranspotation.all.collect { |c| [c.name, c.id] }  %>
+    <button type="button" id="local_transpotation_nextbtn">Next</button>
+    <button type="button" id="local_transpotation_skipbtn">Skip</button>
+  </div>
+
+  <div class="guide_field" style="display:none;">
+    <h3>Guide?</h3><br/>
+    <%= f.select :guide_id, Guide.all.collect { |c| [c.name, c.id] }  %>
+    <button type="button" id="guide_nextbtn">Next</button>
+    <button type="button" id="guide_skipbtn">Skip</button>
+  </div>
+
+  <div class="detail_field" style="display:none;" >
+    <h3>Detail?</h3><br/>
+    <%= f.text_area :travel_detail, :class =>"travel_detail_name", :placeholder => "traveller details"  %>
+      <%= f.submit "Send", :id => "travel_detail_btn" %>
+  </div>
+
+
+
+<% end %>
+
+</div>
+
+
+  <script>
+        $("#desti_btn").click(function ( event ) {
+          $(".desti_field").hide();
+          $(".date_field").show("slow");
+          $("#back_desti").show("slow");
+          });
+
+        $("#date_btn").click(function ( event ) {
+          $(".date_field").hide();
+          $("#back_desti").hide();
+          
+          $(".passenger_field").show("slow");
+          $("#back_date").show("slow");
+          });
+
+        $("#passenger_btn").click(function ( event ) {
+          $(".passenger_field").hide();
+          $("#back_date").hide();
+
+          $(".airfare_field").show("slow");
+          $("#back_passenger").show("slow");
+          });
+
+        $("#airfare_btn").click(function ( event ) {
+          $(".airfare_field").hide();
+          $("#back_passenger").hide();
+
+          $(".hotel_field").show("slow");
+          $("#back_airfare").show("slow");
+          });
+
+
+        $("#hotel_btn").click(function ( event ) {
+          $(".hotel_field").hide();
+          $("#back_airfare").hide();
+
+
+          $(".local_transport_field").show("slow");
+          $("#back_hotel").show("slow");
+          });
+
+        $("#local_transpotation_nextbtn").click(function ( event ) {
+          $(".local_transport_field").hide();
+          $("#back_hotel").hide();
+
+          $(".guide_field").show("slow");
+          $("#back_local").show("slow");
+          });
+
+        $("#guide_nextbtn").click(function ( event ) {
+          $(".guide_field").hide();
+          $("#back_local").hide();
+
+          $(".detail_field").show("slow");
+          $("#back_guide").show("slow");
+          });
+     
+  </script>
+
+
+  <script>
+
+
+        $("#back_desti").click(function ( event ) {
+            $(".desti_field").show();
+            $(".date_field").hide();
+            $("#back_desti").hide();
+          });
+
+        $("#back_date").click(function ( event ) {
+           $(".date_field").show();
+           $("#back_desti").show();
+           
+           $(".passenger_field").hide();
+           $("#back_date").hide();
+
+          });
+
+        $("#back_passenger").click(function ( event ) {
+            $(".passenger_field").show();
+            $("#back_date").show();
+
+            $(".airfare_field").hide();
+            $("#back_passenger").hide();
+          });
+
+        $("#back_airfare").click(function ( event ) {
+           $(".airfare_field").show();
+           $("#back_passenger").show();
+
+           $(".hotel_field").hide();
+           $("#back_airfare").hide();
+          
+          });
+
+        $("#back_hotel").click(function ( event ) {
+            $(".hotel_field").show();
+            $("#back_airfare").show();
+
+            $(".local_transport_field").hide();
+            $("#back_hotel").hide();
+         
+          });
+
+        $("#back_local").click(function ( event ) {
+            $(".local_transport_field").show();
+            $("#back_hotel").show();
+
+            $(".guide_field").hide();
+            $("#back_local").hide();
+         
+          });
+
+        $("#back_guide").click(function ( event ) {
+            $(".guide_field").show();
+             $("#back_local").show();
+
+            $(".detail_field").hide();
+            $("#back_guide").hide();
+         
+          });
+
+
+  </script>
+
+<script>
+
+$( document ).ready(function() {
+
+var yourSelect = document.getElementById( "package_destination_id" );
+var mystring = yourSelect.options[ yourSelect.selectedIndex ].text
+mystring = mystring.replace(/\s/g, "");
+$("#"+mystring).show();
+
+
+
+});
+
+
+$( "#package_destination_id" ).change(function() {
+
+    $(".desti_img").hide();
+    var optionSelected = $(this).find("option:selected");
+    var valueSelected  = optionSelected.val();
+    var textSelected   = optionSelected.text();
+    textSelected = textSelected.replace(/\s/g, "");
+    $("#"+textSelected).show();
+
+});
+</script>

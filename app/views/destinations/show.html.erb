@@ -1,0 +1,48 @@
+
+<div class="container">
+	<ol class="breadcrumb">
+	  <li><%= link_to "Dashboard", dashboard_path  %></li>
+	  <li><%= link_to "Destinations", destinations_path  %></li>
+	  <li class="active">Destination Info</li>
+	</ol>
+
+
+
+    <% flash.each do |key, notice| %>
+	    <div class="alert alert-<%= key %>">
+	        <a href="#" data-dismiss="alert" class="close">×</a>
+	        <%= notice %>
+	    </div>
+	<% end %>
+
+	<div class="panel panel-default">
+	  <div class="panel-heading">Form - Destination Info</div>
+	    <div class="panel-body">
+	    <%= image_tag @destination.avatar.url(:medium) %>
+			<dl class="dl-horizontal">
+			  <h5>
+			        <dt>Name:</dt>
+			        <dd><%= @destination.name %></dd>
+			  </h5>
+			  <h5>
+			        <dt>Description:</dt>
+			        <dd><%= @destination.description %></dd>
+			  </h5>
+			 
+      		</dl>
+
+		</div>
+        <div class="panel-footer">
+            <%= link_to 'Edit', edit_destination_path(@destination),  :class =>"btn btn-info" %>
+			<%= link_to 'Back', destinations_path,  :class =>"btn btn-default" %>
+        </div>
+  	</div>
+</div>
+
+
+
+
+	
+
+
+</div>

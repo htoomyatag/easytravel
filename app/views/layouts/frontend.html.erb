@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome EasiTravel</title>
+  <link rel="shortcut icon" href="<%= asset_path 'favicon.ico'%>">
+  <%= stylesheet_link_tag  'front_end.css' %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+  </script>
+  
+  <%= javascript_include_tag 'jquery.min.js' %>
+  <%= stylesheet_link_tag  'jquery.bxslider.css' %>
+  <%= javascript_include_tag 'jquery.bxslider.js' %>
+  <%= javascript_include_tag 'bootstrap.js' %>
+  <script type="text/javascript">
+        $(document).ready(function(){
+          $('.bxslider').bxSlider({
+             auto: true,
+             autoControls: true,
+             minSlides: 4,
+             maxSlides: 4,
+             slideWidth:450,
+             slideMargin: 10
+          });
+        });
+  </script>
+    <!---//script---->
+    <!---smoth-scrlling---->
+  <script type="text/javascript">
+        $(document).ready(function(){
+                  $('a[href^="#"]').on('click',function (e) {
+                      e.preventDefault();
+                      var target = this.hash,
+                      $target = $(target);
+                      $('html, body').stop().animate({
+                          'scrollTop': $target.offset().top
+                      }, 1000, 'swing', function () {
+                          window.location.hash = target;
+                      });
+                  });
+                });
+  </script>
+  <%= javascript_include_tag 'flexy-menu.js' %>
+  <script type="text/javascript">
+    $(document).ready(function(){$(".flexy-menu").flexymenu({speed: 400,type: "horizontal",align: "right"});});
+  </script>
+     <%= stylesheet_link_tag  'fwslider.css' %>
+     <%= javascript_include_tag 'jquery-ui.min.js' %>
+     <%= javascript_include_tag 'css3-mediaqueries.js' %>
+     <%= javascript_include_tag 'fwslider.js' %>
+     
+    <!--end slider -->
+    <!---calender-style---->
+      <%= stylesheet_link_tag  'jquery-ui.css' %>
+</head>
+
+<body data-no-turbolink="true">
+
+  <%= yield %>
+
+    <div class="subfooter">
+      <div class="wrap">
+       
+        <p class="copy-right">Produce an App for Others is Worth Living. <a href="http://www.hnttechs.com/">Produced By H&Ttechs.</a></p>
+        <a class="to-top" href="#header"><span> </span> </a>
+      </div>
+    </div>
+
+</body>
+
+
+</html>
+
+
+
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    </script>
+    <script src="web/js/jquery.bxslider.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function(){
+          $('.bxslider').bxSlider({
+             auto: true,
+             autoControls: true,
+             minSlides: 4,
+             maxSlides: 4,
+             slideWidth:450,
+             slideMargin: 10
+          });
+        });
+    </script>
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+                  $('a[href^="#"]').on('click',function (e) {
+                      e.preventDefault();
+                      var target = this.hash,
+                      $target = $(target);
+                      $('html, body').stop().animate({
+                          'scrollTop': $target.offset().top
+                      }, 1000, 'swing', function () {
+                          window.location.hash = target;
+                      });
+                  });
+                });
+    </script>
+    
+    <script type="text/javascript">$(document).ready(function(){$(".flexy-menu").flexymenu({speed: 400,type: "horizontal",align: "right"});});
+    </script>

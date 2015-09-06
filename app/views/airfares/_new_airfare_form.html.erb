@@ -1,0 +1,40 @@
+
+<%= form_for(@airfare, :remote => true) do |f| %>
+  <% if @airfare.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@airfare.errors.count, "error") %> prohibited this airfare from being saved:</h2>
+
+      <ul>
+      <% @airfare.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name, :class =>"form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price, :class =>"form-control" %>
+  </div>
+  <div class="field">
+    <%= f.label :rank %><br>
+    <%= f.text_field :rank, :class =>"form-control" %>
+  </div><br/>
+  <div class="actions">
+    <%= f.submit "Add", :class =>"btn btn-success" ,:id => "airfare_add", :data_dismiss =>"modal" %>
+    <button type="button" class="btn btn-default" id="close_airfare_btn" data-dismiss="modal">Cancel</button>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+
+$("#airfare_add").click(function(){
+  location.reload();
+});
+
+</script>
